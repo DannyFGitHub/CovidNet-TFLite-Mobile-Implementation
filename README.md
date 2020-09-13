@@ -16,7 +16,7 @@ https://github.com/DannyFGitHub/pneumoCheck-Models-TFLite-COVID-Net
 
 ### TFLite Version for mobile - COVIDNet Chest X-Ray Classification
 
-_Currently I have converted the CXR4 models A and B to TFLite with no optimisation, Default Optimisation and 16Float Optimisation._
+_Currently I have converted the CXR4 models A and B to TFLite default Optimisation._
 
 
 |  Type  | Input Resolution | COVID-19 Sensitivity | Optimisation | Size |       Model      |
