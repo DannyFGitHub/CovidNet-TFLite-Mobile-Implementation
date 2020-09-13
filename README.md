@@ -12,3 +12,11 @@ Both Model A and Model B have been trained to identifiy: Pneumonia, COVID-19 and
 
 The models used in this application can be found at:
 https://github.com/DannyFGitHub/pneumoCheck-Models-TFLite-COVID-Net
+
+
+
+
+---
+
+For a demo on implementing your own models:
+https://github.com/vasugargofficial/Image-Classification-Mobilenet-AndroidDemo
