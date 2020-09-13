@@ -42,7 +42,6 @@ Thumbs.dbb
 *.jpg
 *.jpeg
 *.bmp
-*.png
 *.gif
 *.tif
 *.ogg
@@ -52,4 +51,3 @@ Thumbs.dbb
 *.FBX
 *.max
 
-!ic_launcher.png
