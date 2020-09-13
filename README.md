@@ -18,6 +18,7 @@ https://github.com/DannyFGitHub/pneumoCheck-Models-TFLite-COVID-Net
 
 _Currently I have converted the CXR4 models A and B to TFLite with no optimisation, Default Optimisation and 16Float Optimisation._
 
+
 |  Type  | Input Resolution | COVID-19 Sensitivity | Optimisation | Size |       Model      |
 |:------:|:----------------:|:--------------------:|:------------:|:----:|:----------------:|
 | ModelA |      480x480     |         95.0         |   Default    |  40M | [covidnet_a.tflite](https://drive.google.com/file/d/1_DWDkJgFnP_EtvWMMA4FdZBvxLj48T-y/view?usp=sharing)|
