@@ -3,7 +3,9 @@
 
 __WARNING: Do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
 
-![](screenshots/screenshot01.png | width=100)
+<p align="center">
+  <img width="460" src="screenshots/screenshot01.png">
+</p>
 
 Both Model A and Model B have been trained to identifiy: Pneumonia, COVID-19 and Normal Lungs X Ray.
 
