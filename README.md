@@ -1,6 +1,5 @@
 # Covid Mobile Classifier App
 ## CovidNet TFLite Model Android Mobile Classifier Implementation
-Marshmellow - API 26
 
 __WARNING: Regardless of accuracy, do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
 
@@ -9,6 +8,7 @@ __WARNING: Regardless of accuracy, do not use this application as a method of se
 <p align="center">
   <img width="460" src="screenshots/screenshot01.png">
 </p>
+API 26 - Oreo
 
 Both Model A and Model B have been trained to identifiy: Pneumonia, COVID-19 and Normal Lungs X Ray.
 
