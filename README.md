@@ -9,9 +9,9 @@ A (poc) android application to classify COVID-19, Pneumonia or Normal chest X-Ra
 __WARNING: Regardless of accuracy, do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
 
 <p align="center">
-  <img width="460" src="screenshots/screenshot01.png">
-  <img width="460" src="screenshots/screenshot02.png">
-  <img width="460" src="screenshots/screenshot03.png">
+  <img width="200" src="screenshots/screenshot01.png">
+  <img width="200" src="screenshots/screenshot02.png">
+  <img width="200" src="screenshots/screenshot03.png">
 </p>
 API 26 - Oreo
 
