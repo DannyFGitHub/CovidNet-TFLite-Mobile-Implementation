@@ -1,14 +1,18 @@
 # Covid Mobile Classifier App
 ## CovidNet TFLite Model Android Mobile Classifier Implementation
 
+A (poc) android application to classify COVID-19, Pneumonia or Normal chest X-Rays.
+
 __WARNING: Regardless of accuracy, do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
-
-
 
 <p align="center">
   <img width="460" src="screenshots/screenshot01.png">
 </p>
 API 26 - Oreo
+
+
+#### For best results
+Utilise a scan of an X-Ray photo. Any anomalies or foreign objects in the photo that is not part of the X-Ray will skew the accuracy of the results.
 
 Both Model A and Model B have been trained to identifiy: Pneumonia, COVID-19 and Normal Lungs X Ray.
 
