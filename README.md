@@ -1,5 +1,8 @@
 # Covid Mobile Classifier App
 ## CovidNet TFLite Model Android Mobile Classifier Implementation
+<p align="center">
+  <img width="100" src="screenshots/iconlogo.png">
+</p>
 
 A (poc) android application to classify COVID-19, Pneumonia or Normal chest X-Rays.
 
