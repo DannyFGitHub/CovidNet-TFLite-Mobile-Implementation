@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Classification using COVIDNet Model</string>
+    <string name="instructions">Tap the imageview to select a photo then tap Classify</string>
 </resources>
