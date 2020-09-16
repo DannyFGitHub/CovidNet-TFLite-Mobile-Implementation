@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        imageView = (ImageView) findViewById(R.id.image);
-        btnClassify = (Button) findViewById(R.id.btn_classify);
-        classifyText = (TextView) findViewById(R.id.result);
-        modelSwitch = (SwitchCompat) findViewById(R.id.toggle_modelAorB);
+        imageView = findViewById(R.id.image);
+        btnClassify = findViewById(R.id.btn_classify);
+        classifyText = findViewById(R.id.result);
+        modelSwitch = findViewById(R.id.toggle_modelAorB);
 
         imageView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(Intent.createChooser(intent, "Select Picture"), 12);
             }
         });
+
 
         btnClassify.setOnClickListener(new View.OnClickListener() {
             @Override

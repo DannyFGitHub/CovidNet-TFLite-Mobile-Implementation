@@ -1,7 +1,10 @@
 # Covid Mobile Classifier App
 ## CovidNet TFLite Model Android Mobile Classifier Implementation
+Marshmellow - API 26
 
-__WARNING: Do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
+__WARNING: Regardless of accuracy, do not use this application as a method of self-diagnosis. Please visit a doctor for an official diagnosis.__
+
+
 
 <p align="center">
   <img width="460" src="screenshots/screenshot01.png">
@@ -10,14 +13,13 @@ __WARNING: Do not use this application as a method of self-diagnosis. Please vis
 Both Model A and Model B have been trained to identifiy: Pneumonia, COVID-19 and Normal Lungs X Ray.
 
 
-The models used in this application can be found at:
+The models used in this application can be found at my other repo:
 https://github.com/DannyFGitHub/pneumoCheck-Models-TFLite-COVID-Net
 
 
 ### TFLite Version for mobile - COVIDNet Chest X-Ray Classification
 
-_Currently I have converted the CXR4 models A and B to TFLite default Optimisation._
-
+_Converted the CXR4 models A and B to TFLite default Optimisation._
 
 |  Type  | Input Resolution | COVID-19 Sensitivity | Optimisation | Size |       Model      |
 |:------:|:----------------:|:--------------------:|:------------:|:----:|:----------------:|
@@ -26,7 +28,7 @@ _Currently I have converted the CXR4 models A and B to TFLite default Optimisati
 
 <br>
 
-These models were converted from the following checkpoint unfrozen graph models:
+These models were converted from the following checkpoint / unfrozen graph models:
 
 <br>
 
@@ -38,7 +40,3 @@ These models were converted from the following checkpoint unfrozen graph models:
 
 <br><Br>
 
----
-
-For a demo on implementing your own models:
-https://github.com/vasugargofficial/Image-Classification-Mobilenet-AndroidDemo
