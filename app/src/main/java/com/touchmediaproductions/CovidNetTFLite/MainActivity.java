@@ -5,10 +5,13 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,15 +25,14 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int MODEL_A = 0;
-    private static final int MODEL_B = 1;
-
     ImageView imageView;
     Button btnClassify;
-    TextView classifyText;
+    TextView resultOutput;
     SwitchCompat modelSwitch;
 
-    MLHelper mlHelper;
+    ProgressBar loadingCircle;
+
+    TextView resultDetails;
 
     Uri imageuri;
     private Bitmap bitmap;
@@ -42,8 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.image);
         btnClassify = findViewById(R.id.btn_classify);
-        classifyText = findViewById(R.id.result);
+        resultOutput = findViewById(R.id.result);
+        resultDetails = findViewById(R.id.resultdetails);
         modelSwitch = findViewById(R.id.toggle_modelAorB);
+
+        loadingCircle = findViewById(R.id.loadingcircle);
 
         imageView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -59,50 +64,75 @@ public class MainActivity extends AppCompatActivity {
         btnClassify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                runClassification();
+                classifyForCOVIDAndPopulateUI();
             }
         });
     }
 
-
-    private void runClassification() {
+    private void classifyForCOVIDAndPopulateUI(){
         if(bitmap != null) {
-            //If mlHelper is null it has been cleared and is ready to be initiated.
-            if(mlHelper == null) {
-                try {
+
+            loadingCircle.setVisibility(View.VISIBLE);
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    // Moves the current Thread into the background
+                    // This approach reduces resource competition between the Runnable object's thread and the UI thread.
+                    android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_BACKGROUND);
+
                     //Get whether model is A or B
-                    int modelToUse = 0;
+                    MLModels modelToUse;
                     if (modelSwitch.isChecked()) {
-                        modelToUse = MODEL_A;
+                        modelToUse = MLModels.MODEL_A_COVIDNET;
                     } else {
-                        modelToUse = MODEL_B;
+                        modelToUse = MLModels.MODEL_B_COVIDNET;
                     }
 
-                    //Prepare the Machine Learning Helper
-                    mlHelper = new MLHelper(MainActivity.this, modelToUse);
+                    //Run Classification over the image and return a Prediction object containing top 3 results
+                    final MLHelper.Prediction prediction = MLHelper.runClassificationOnBitmap(MainActivity.this, bitmap, modelToUse);
 
-                    //Run Classification against bitmap image input:
-                    String result = mlHelper.runClassification(bitmap);
+                    loadingCircle.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadingCircle.setVisibility(View.GONE);
+                        }
+                    });
 
-                    //Display result
-                    classifyText.setText(result);
+                    resultOutput.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            //Display result
+                            String result = prediction.getFirst();
+                            resultOutput.setText(result);
 
-                    //Make it red if COVID, blue if Normal and Orange if Pneumonia
-                    if (result.contains("COVID-19")) {
-                        classifyText.setTextColor(Color.RED);
-                    } else if (result.contains("Pneumonia")) {
-                        classifyText.setTextColor(Color.rgb(255, 165, 0));
-                    } else if (result.contains("Normal")) {
-                        classifyText.setTextColor(Color.CYAN);
-                    }
+                            //Make it red if COVID, blue if Normal and Orange if Pneumonia
+                            if (result.contains("COVID-19")) {
+                                resultOutput.setTextColor(Color.RED);
+                            } else if (result.contains("Pneumonia")) {
+                                resultOutput.setTextColor(Color.rgb(255, 165, 0));
+                            } else if (result.contains("Normal")) {
+                                resultOutput.setTextColor(getResources().getColor(R.color.colorPrimary, getTheme()));
+                            }
+                        }
+                    });
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    resultDetails.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            resultDetails.setVisibility(View.VISIBLE);
+                            String details = "AI Prediction: " + (int) prediction.getFirstValue()
+                                    + "% " + prediction.getFirst()
+                                    + " | " + (int) prediction.getSecondValue()
+                                    + "% " + prediction.getSecond()
+                                    + " | " + (int) prediction.getThirdValue()
+                                    + "% " + prediction.getThird();
+                            resultDetails.setText(details);
+                        }
+                    });
+
                 }
-
-                //Clear mHelper as classification is finished.
-                mlHelper = null;
-            }
+            }).start();
         } else {
             Toast toast = new Toast(MainActivity.this);
             toast.makeText(MainActivity.this, "Please choose a photo first.", Toast.LENGTH_SHORT).show();

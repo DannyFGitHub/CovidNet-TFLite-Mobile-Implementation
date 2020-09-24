@@ -8,46 +8,90 @@
     android:background="@color/colorBackground">
 
 
-    <TextView
-        android:id="@+id/result"
-        style="@style/TextAppearance.AppCompat.Large"
-        android:layout_width="244dp"
-        android:layout_height="32dp"
-        android:layout_above="@+id/textview_instruction"
+    <LinearLayout
+        android:id="@+id/resultlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:textAlignment="center"
-        android:text=""
-        android:padding="12dp" />
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/result"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textview_instruction"
+            android:text=""
+            android:padding="12dp"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:id="@+id/resultdetails"
+            style="@style/TextAppearance.AppCompat.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textview_instruction"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/colorWhiteText"
+            />
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/textview_instruction"
         android:layout_width="252dp"
         android:layout_height="30dp"
-        android:layout_above="@+id/image"
+        android:layout_above="@+id/imageframe"
+        android:layout_below="@+id/resultlayout"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
+        android:textAlignment="center"
+        android:padding="8dp"
         android:text="@string/instructions"
-        android:textColor="@color/colorWhiteText"
-        />
+        android:textColor="@color/colorWhiteText" />
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="480dp"
-        android:layout_height="480dp"
+    <FrameLayout
+        android:id="@+id/imageframe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:src="@color/colorAccent"
-        android:elevation="5dp"
-        android:tooltipText="Tap to Select a Photo"
-        />
+        >
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:src="@color/colorAccent"
+            android:elevation="5dp"
+            android:tooltipText="Tap to Select a Photo"
+            />
+
+        <ProgressBar
+            android:id="@+id/loadingcircle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true"
+            android:elevation="60dp"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
 
     <Button
         android:id="@+id/btn_classify"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/image"
+        android:layout_below="@id/imageframe"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="classify"
